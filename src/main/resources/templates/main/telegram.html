@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram - Web</title>
+    <link rel="stylesheet" href="/static/css/telegram.css">
+
+</head>
+<body>
+<div class="telegram-container">
+    <!-- Sidebar for Contacts -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Telegram</h2>
+            <input type="text" id="search" placeholder="Search contacts">
+        </div>
+        <ul class="contact-list">
+            <li class="contact-item active" >
+                <a th:href="|/telegram?chatId=${1}|">
+                <img src="https://via.placeholder.com/50" alt="User Image" class="contact-image">
+                <div class="contact-info">
+                    <h3>John Doe</h3>
+                    <p>Last message received...</p>
+                </div>
+                <span class="contact-time">11:30 AM</span>
+                </a>
+            </li>
+            <li class="contact-item">
+                <img src="https://via.placeholder.com/50" alt="User Image" class="contact-image">
+                <div class="contact-info">
+                    <h3>Jane Smith</h3>
+                    <p>Last message received...</p>
+                </div>
+                <span class="contact-time">10:45 AM</span>
+            </li>
+            <!-- Additional contacts -->
+        </ul>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="chat-area">
+        <div class="chat-header">
+            <img src="https://via.placeholder.com/50" alt="User Image" class="chat-header-image">
+            <div class="chat-header-info">
+                <h3>John Doe</h3>
+                <p>Online</p>
+            </div>
+            <div class="chat-header-actions">
+                <button class="chat-action">Search</button>
+                <button class="chat-action">Options</button>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages -->
+            <div class="message received">
+                <p>Hey there!</p>
+                <span class="message-time">11:00 AM</span>
+            </div>
+            <div class="message sent">
+                <p>Hello! How are you?</p>
+                <span class="message-time">11:05 AM</span>
+            </div>
+            <!-- Additional messages -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type a message">
+            <button id="sendMessageButton">Send</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

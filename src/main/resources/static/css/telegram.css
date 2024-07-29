@@ -1,0 +1,240 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+.telegram-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 30%;
+    max-width: 320px;
+    background-color: #fff;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #0088cc;
+}
+
+#search {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    outline: none;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.contact-item {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-item:hover {
+    background-color: #f0f0f0;
+}
+
+.contact-item.active {
+    background-color: #e9f5ff;
+}
+
+.contact-image {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.contact-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.contact-info p {
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.contact-time {
+    margin-left: auto;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Chat Area Styles */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #e5ddd5;
+}
+
+.chat-header {
+    padding: 10px;
+    background-color: #0088cc;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-header-image {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.chat-header-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+.chat-header-info p {
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: #dcdcdc;
+}
+
+.chat-header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.chat-action {
+    background-color: #007bb5;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-action:hover {
+    background-color: #005f8a;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #e5ddd5;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    max-width: 60%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.message.received {
+    background-color: #fff;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+}
+
+.message.sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #999;
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+}
+
+.chat-input {
+    padding: 10px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+#messageInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+#sendMessageButton {
+    background-color: #0088cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sendMessageButton:hover {
+    background-color: #007bb5;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .telegram-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: none;
+        border-right: none;
+    }
+
+    .chat-area {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+}
