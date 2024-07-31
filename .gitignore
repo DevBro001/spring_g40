@@ -144,3 +144,5 @@ fabric.properties
 /.idea/encodings.xml
 /.idea/vcs.xml
 /.idea/misc.xml
+/.idea/dataSources.xml
+/.idea/artifacts/SpringCore_war_exploded.xml
