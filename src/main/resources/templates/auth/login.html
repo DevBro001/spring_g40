@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:ht="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,23 @@
 <body>
 <div class="login-container">
     <h1>Login </h1>
-    <form id="loginForm" method="post">
+    <div id="error-message" th:if="${error}" >Message: [[${error}]]</div>
+    <form id="loginForm" action="/auth/login" method="post">
         <div class="input-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="uname" required>
+            <input type="text" id="username" name="username" required>
         </div>
         <div class="input-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="pword" required>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+            <label for="remMe">Remember Me</label>
+            <input type="checkbox" id="remMe" name="remMe" >
         </div>
         <button type="submit">Login</button>
     </form>
-    <div id="error-message"></div>
+
 </div>
 </body>
 </html>

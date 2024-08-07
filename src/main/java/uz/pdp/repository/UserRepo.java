@@ -7,31 +7,39 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Repository;
 import uz.pdp.model.AuthUser;
 import java.util.Map;
+import java.util.Optional;
 
-@Component
+@Repository
 public class UserRepo {
 
     private NamedParameterJdbcTemplate template;
+    private PasswordEncoder passwordEncoder;
     private RowMapper<AuthUser> rowMapper =  (rs, rowNum) ->{
         long id = rs.getLong("id");
         String name = rs.getString("name");
         String username = rs.getString("username");
-        return AuthUser.builder().id(id).name(name).username(username).build();
+        String password = rs.getString("password");
+        String role = rs.getString("role");
+        return AuthUser.builder().id(id).name(name).username(username).password(password).roles(role).build();
     };
     private BeanPropertyRowMapper<AuthUser> autoMapper = BeanPropertyRowMapper.newInstance(AuthUser.class);
 
-    public UserRepo(NamedParameterJdbcTemplate template) {
+    public UserRepo(NamedParameterJdbcTemplate template, PasswordEncoder passwordEncoder) {
         this.template = template;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void save(AuthUser user){
-        String query =  "insert into users(name,username) values(:name,:username) ";
+        String query =  "insert into users(name,username,password) values(:name,:username,:password) ";
+        String encode = passwordEncoder.encode(user.getPassword());
         Map<String, Object> name = Map.of(
                 "name", user.getName(),
-                "username", user.getUsername()
+                "username", user.getUsername(),
+                "password", encode
         );
         template.update(query,name);
     }
@@ -49,5 +57,15 @@ public class UserRepo {
 
         template.update(query,source, keyHolder,new String[]{"id","name"});
         return  (Integer)(keyHolder.getKeys().get("id"));
+    }
+
+    public Optional<AuthUser> getByUsername(String username) {
+        String query =  "select * from users where username = :username limit 1";
+        try {
+            AuthUser user = template.queryForObject(query, Map.of("username", username), rowMapper);
+            return Optional.ofNullable(user);
+        }catch (Exception e){
+            return Optional.empty();
+        }
     }
 }
