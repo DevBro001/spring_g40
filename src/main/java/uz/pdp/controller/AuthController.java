@@ -25,6 +25,15 @@ public class AuthController {
         return "auth/login";
     }
 
+     @GetMapping("/unAuth")
+    public String unAuthentication(){
+        return "/auth/unAuthentication";
+    }
+    @GetMapping("/noAccess")
+    public String noAccess(){
+        return "/auth/NoAccessPage";
+    }
+
     @GetMapping("/logout")
     public String logout( Model model){
 //        model.addAttribute("error",error);

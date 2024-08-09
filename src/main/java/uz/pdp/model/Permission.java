@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthUser {
+public class Permission {
     private Integer id;
     private String name;
-    private String username;
-    private String password;
-    private String roles;
+    private String code;
 }

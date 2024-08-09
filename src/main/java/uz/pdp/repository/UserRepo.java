@@ -19,7 +19,7 @@ public class UserRepo {
     private NamedParameterJdbcTemplate template;
     private PasswordEncoder passwordEncoder;
     private RowMapper<AuthUser> rowMapper =  (rs, rowNum) ->{
-        long id = rs.getLong("id");
+        int id = rs.getInt("id");
         String name = rs.getString("name");
         String username = rs.getString("username");
         String password = rs.getString("password");

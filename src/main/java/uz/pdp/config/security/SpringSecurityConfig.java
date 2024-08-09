@@ -14,9 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import uz.pdp.handler.AuthEntryPointHandler;
 import uz.pdp.handler.LoginFailureHandler;
 
 @Configuration
@@ -26,11 +29,17 @@ public class SpringSecurityConfig {
 
     private String[]  WITH_LIST = {
             "/static/**",
-            "/auth/signup"
+            "/auth/signup",
+            "/auth/unAuth"
     };
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, LoginFailureHandler loginFailureHandler,UserDetailsService userDetailsService) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   LoginFailureHandler loginFailureHandler,
+                                                   UserDetailsService userDetailsService,
+                                                   AuthenticationEntryPoint authenticationEntryPoint,
+                                                   AccessDeniedHandler accessDeniedHandler
+                                                   ) throws Exception {
 
         http.csrf(csrf->csrf.disable());
         http
@@ -60,7 +69,11 @@ public class SpringSecurityConfig {
                         .userDetailsService(userDetailsService)
                         .tokenValiditySeconds(24*60*60*7)
                 )
-                .exceptionHandling(Customizer.withDefaults());
+                .exceptionHandling(handler->handler
+                        .authenticationEntryPoint(authenticationEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler)
+
+                );
 
         return http.build();
     }
