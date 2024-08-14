@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthUser {
+public class User {
     private Integer id;
     private String name;
     private String username;

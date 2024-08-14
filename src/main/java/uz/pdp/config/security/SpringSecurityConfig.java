@@ -30,7 +30,8 @@ public class SpringSecurityConfig {
     private String[]  WITH_LIST = {
             "/static/**",
             "/auth/signup",
-            "/auth/unAuth"
+            "/auth/unAuth",
+            "/main/home"
     };
 
     @Bean
@@ -45,6 +46,7 @@ public class SpringSecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
+//                        .requestMatchers("/admin/**").hasAuthority("UPDATE_USER")
                         .requestMatchers(WITH_LIST).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin

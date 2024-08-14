@@ -1,12 +1,12 @@
 package uz.pdp.config.security;
 
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uz.pdp.model.AuthUser;
+import uz.pdp.model.User;
 import uz.pdp.model.Permission;
 import uz.pdp.model.Role;
 import uz.pdp.repository.PermissionRepo;
@@ -30,29 +30,25 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<AuthUser> optional = userRepo.getByUsername(username);
-        AuthUser authUser = optional.orElseThrow(() -> new BadCredentialsException("Username or password incorrect"));
-
-        Integer id = authUser.getId();
-
+        Optional<User> optional = userRepo.getByUsername(username);
+        User user = optional.orElseThrow(() -> new BadCredentialsException("Username or password incorrect"));
+        Integer id = user.getId();
         List<Role> roles = roleRepo.getByUser(id);
-
-        Set<String> authorities  = new HashSet<>();
+        Set<SimpleGrantedAuthority> authorities  = new HashSet<>();
         for (Role role : roles) {
-            authorities.add("ROLE_"+role.getCode());
+            authorities.add( new SimpleGrantedAuthority("ROLE_" + role.getCode()));
             List<Permission> permissions = permissionRepo.getByRole(role.getId());
             for (Permission permission : permissions) {
-                authorities.add(permission.getCode());
+                authorities.add(new SimpleGrantedAuthority(permission.getCode()));
             }
         }
-
-
-        String[] array = authorities.toArray(new String[authorities.size()]);
-        UserDetails build = User
-                .withUsername(authUser.getUsername())
-                .password(authUser.getPassword())
-                .authorities(array)
+        AuthUser authUser = AuthUser.builder()
+                .id(user.getId())
+                .fullName(user.getName())
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .authorities(authorities)
                 .build();
-        return build;
+        return authUser;
     }
 }

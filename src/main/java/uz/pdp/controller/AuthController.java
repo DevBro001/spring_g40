@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.dto.SignupDto;
-import uz.pdp.model.AuthUser;
+import uz.pdp.model.User;
 import uz.pdp.repository.UserRepo;
 
 @Controller
@@ -45,7 +45,7 @@ public class AuthController {
     }
     @PostMapping("/signup")
     public String signup(SignupDto signupDto){
-        AuthUser user = AuthUser.builder()
+        User user = User.builder()
                 .name(signupDto.name())
                 .username(signupDto.username())
                 .password(signupDto.password()).build();

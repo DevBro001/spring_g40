@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <head  >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title >Home</title>
-    <link rel="stylesheet" href="/static/css/home.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+
 </head>
 <body>
 <div th:include="fragment::navbar"> </div>
+<!--<h1 th:unless="${#authentication.isAuthenticated()}">You have to login</h1>-->
 
-<div class="profile-container">
-    <div class="profile-header">
-        <h1 id="user-name" th:text="${user.name()}" ></h1>
-        <p id="user-email" th:text="${user.email()}"></p>
-        <button id="edit-button">Edit Profile</button>
-    </div>
-    <div class="profile-details">
-        <h2>Profile Information</h2>
-        <ul>
-            <li><strong>Username:</strong> <span id="user-username" th:text = "${user.username()}"></span></li>
-            <li><strong>Age:</strong> <span id="user-age" th:text="|Yoshi ${user.age()}|"></span></li>
-        </ul>
-    </div>
+
+<div class="body-container">
+    <th:block th:if="${#authentication!=null&&#authentication.isAuthenticated()}">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h1>Salom</h1>
+                    <h1 id="user-id" th:text="${#authentication.getName()}" ></h1>
+<!--                    <h1 id="user-name" sec:authentication="principal.password" ></h1>-->
+        <!--            <p id="user-email" th:text="${user.email()}"></p>-->
+                    <button id="edit-button">Edit Profile</button>
+                </div>
+<!--                <div class="profile-details">-->
+<!--                    <h2>Profile Information</h2>-->
+<!--                    <ul>-->
+<!--                        <li><strong>Username:</strong> <span id="user-username" th:text = "${user.getUsername()}"></span></li>-->
+<!--        &lt;!&ndash;                <li><strong>Age:</strong> <span id="user-age" th:text="|Yoshi ${user.age()}|"></span></li>&ndash;&gt;-->
+<!--                    </ul>-->
+<!--                </div>-->
+            </div>
+    </th:block>
+
 </div>
 </body>
 </html>

@@ -1,20 +1,13 @@
 package uz.pdp.repository;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import uz.pdp.model.AuthUser;
 import uz.pdp.model.Permission;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Repository
 public class PermissionRepo {
