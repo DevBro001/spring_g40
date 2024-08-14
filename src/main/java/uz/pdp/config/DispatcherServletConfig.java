@@ -1,5 +1,7 @@
 package uz.pdp.config;
 
+import jakarta.servlet.MultipartConfigElement;
+import jakarta.servlet.ServletRegistration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class DispatcherServletConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -17,5 +19,11 @@ public class DispatcherServletConfig extends AbstractAnnotationConfigDispatcherS
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        MultipartConfigElement multipartConfigElement = new MultipartConfigElement("");
+        registration.setMultipartConfig(multipartConfigElement);
     }
 }
