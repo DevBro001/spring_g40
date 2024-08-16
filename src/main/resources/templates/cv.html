@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative CV</title>
+    <style>
+        /* Fonts and Colors */
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #E74C3C;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            padding: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #2C3E50;
+            font-size: 1.8em;
+            border-bottom: 2px solid #E74C3C;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .section p,
+        .section ul {
+            margin: 0;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section ul li {
+            background: url('https://i.imgur.com/8K28dVR.png') no-repeat left center;
+            background-size: 20px;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .contact-info, .skills {
+            width: 35%;
+        }
+
+        .education, .experience {
+            width: 65%;
+        }
+
+        .contact-info a {
+            color: #E74C3C;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .skills p {
+            background-color: #E74C3C;
+            color: #fff;
+            padding: 5px 10px;
+            display: inline-block;
+            margin: 5px 5px 5px 0;
+            border-radius: 5px;
+        }
+
+        .education h3, .experience h3 {
+            margin-top: 10px;
+            font-weight: 700;
+            color: #E74C3C;
+        }
+
+        .education p, .experience p {
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2C3E50;
+            color: #fff;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header Section -->
+    <div class="header">
+        <img src="https://via.placeholder.com/150" alt="John Doe">
+        <h1>John Doe</h1>
+        <p>Web Developer | Designer | Innovator</p>
+    </div>
+
+    <div class="main-content">
+        <!-- Contact Information Section -->
+        <div class="section contact-info">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:johndoe@example.com">johndoe@example.com</a></p>
+            <p>Phone: +123 456 7890</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/johndoe" target="_blank">linkedin.com/in/johndoe</a></p>
+            <p>Portfolio: <a href="https://www.johndoe.com" target="_blank">www.johndoe.com</a></p>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section skills">
+            <h2>Skills</h2>
+            <p>HTML</p>
+            <p>CSS</p>
+            <p>JavaScript</p>
+            <p>PHP</p>
+            <p>Python</p>
+            <p>SQL</p>
+            <p>Responsive Design</p>
+            <p>Git</p>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section education">
+            <h2>Education</h2>
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p>University of Example - 2015 to 2019</p>
+            <p>GPA: 3.8/4.0</p>
+        </div>
+
+        <!-- Work Experience Section -->
+        <div class="section experience">
+            <h2>Experience</h2>
+            <h3>Web Developer - ABC Company</h3>
+            <p>June 2019 to Present</p>
+            <ul>
+                <li>Developed and maintained the company website using HTML, CSS, and PHP.</li>
+                <li>Collaborated with the design team to create responsive web pages.</li>
+                <li>Improved website performance by optimizing images and scripts.</li>
+            </ul>
+
+            <h3>Intern - XYZ Company</h3>
+            <p>January 2018 to May 2019</p>
+            <ul>
+                <li>Assisted in the development of internal tools using JavaScript and Python.</li>
+                <li>Conducted testing and debugging for web applications.</li>
+                <li>Provided support to senior developers in various projects.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 John Doe. All Rights Reserved.</p>
+    </div>
+</div>
+</body>
+</html>
